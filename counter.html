@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Counter App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f0f8ff;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .counter {
+            font-size: 60px;
+            margin: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #increase {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #decrease {
+            background-color: #f44336;
+            color: white;
+        }
+        #reset {
+            background-color: #ff9800;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Counter App</h1>
+        <div class="counter" id="counter">0</div>
+        <div>
+            <button id="decrease">Decrease (-)</button>
+            <button id="reset">Reset</button>
+            <button id="increase">Increase (+)</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize counter
+        let count = 0;
+        const counterElement = document.getElementById('counter');
+        const increaseBtn = document.getElementById('increase');
+        const decreaseBtn = document.getElementById('decrease');
+        const resetBtn = document.getElementById('reset');
+
+        // Function to update display
+        function updateCounter() {
+            counterElement.textContent = count;
+            
+            // Change color based on value
+            if (count > 0) {
+                counterElement.style.color = '#4CAF50'; // Green
+            } else if (count < 0) {
+                counterElement.style.color = '#f44336'; // Red
+            } else {
+                counterElement.style.color = '#2c3e50'; // Default
+            }
+        }
+
+        // Button event listeners
+        increaseBtn.addEventListener('click', () => {
+            count++;
+            updateCounter();
+        });
+
+        decreaseBtn.addEventListener('click', () => {
+            count--;
+            updateCounter();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            updateCounter();
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '+' || e.key === 'ArrowUp') {
+                count++;
+                updateCounter();
+            } else if (e.key === '-' || e.key === 'ArrowDown') {
+                count--;
+                updateCounter();
+            } else if (e.key === '0' || e.key === 'r') {
+                count = 0;
+                updateCounter();
+            }
+        });
+
+        // Initialize
+        updateCounter();
+    </script>
+</body>
+</html>
